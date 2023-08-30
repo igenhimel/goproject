@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Details</title>
+    <!-- Add Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card mt-5">
+            <h5 class="card-header bg-primary text-white">Student Details</h5>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <img src="{{.ImageURL}}" alt="Student Image" class="img-fluid img-top" style="max-width: 200px;">
+                    </div>
+                    <div class="col-md-8">
+                        <strong>Student ID:</strong> {{.ID}}<br>
+                        <strong>Name:</strong> {{.Name}}<br>
+                        <strong>CGPA:</strong> {{.CGPA}}<br>
+                        <strong>Career Interest:</strong> {{.CareerInterest}}<br>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <a href="/" class="btn btn-primary">Back</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Bootstrap JS and Popper.js CDNs (for components that require JavaScript) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

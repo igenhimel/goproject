@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Student Data Management</title>
+    <!-- Add Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center bg-dark text-light mb-2">Student Data Management</h1>
+        <!-- Alert for student ID existence -->
+        {{ if .StudentIDExists }}
+        <div class="alert alert-danger text-center">
+            Student with ID <strong>{{ .ExistingStudentID }}</strong> already exists.
+        </div>
+        {{ end }}
+
+        <!-- Alert for adding a new student -->
+        {{ if .StudentAdded }}
+        <div class="alert alert-success text-center">
+            Student with ID <strong>{{ .AddedStudentID }}</strong> added successfully.
+        </div>
+        {{ end }}
+
+        <!-- Not Found message -->
+        {{ if .StudentNotFound }}
+        <div class="alert alert-warning text-center">
+            Student not found.
+        </div>
+        {{ end }}
+
+        {{ if .DeleteStudent }}
+        <div class="alert alert-warning text-center">
+            Student with ID <strong>{{ .DeleteStudentID }}</strong> deleted successfully.
+        </div>
+        {{ end }}
+
+
+        <div class="row">
+            <div class="col">
+                <h2 class="mt-2">Add Student</h2>
+                <form action="/add" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="id">Student ID:</label>
+                        <input type="text" class="form-control" id="id" name="id" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="name">Student Name:</label>
+                        <input type="text" class="form-control " id="name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cgpa">Student CGPA:</label>
+                        <input type="number" step="0.01" class="form-control " id="cgpa" name="cgpa" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="career_interest">Career Interest:</label>
+                        <input type="text" class="form-control" id="career_interest" name="career_interest" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="image">Student Image:</label>
+                        <input type="file" class="form-control-file " id="image" name="image" accept="image/*" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Add Student</button>
+                </form>
+            </div>
+
+            <div class="col">
+                <h2 class="mt-2">View Student</h2>
+                <form action="/view" method="get">
+                    <div class="form-group">
+                        <label for="view_id">Student ID:</label>
+                        <input type="text" class="form-control" id="view_id" name="id" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">View Student</button>
+                </form>
+
+            </div>
+            <div class="col">
+                <h2 class="mt-2">Delete Student</h2>
+                <form action="/delete" method="get">
+                    <div class="form-group">
+                        <label for="delete_id">Student ID:</label>
+                        <input type="text" class="form-control" id="delete_id" name="id" required>
+                    </div>
+                    <button type="submit" class="btn btn-danger">Delete Student</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
