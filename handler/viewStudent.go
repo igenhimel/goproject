@@ -5,13 +5,16 @@ import (
     "net/http"
     "log"
 	"goproject/models"
+    "strings"
 )
 
 
 func ViewStudentHandler(w http.ResponseWriter, r *http.Request) {
     if r.Method == http.MethodGet {
         tmpl := template.Must(template.ParseFiles("templates/view.html"))
-        id := r.URL.Query().Get("id")
+        id := strings.ToUpper(r.URL.Query().Get("id"))
+
+        
         // Create a channel to receive the student and whether it exists
         resultChan := make(chan struct {
             student models.Student

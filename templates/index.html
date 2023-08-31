@@ -10,6 +10,18 @@
 <body>
     <div class="container mt-5">
         <h1 class="text-center bg-dark text-light mb-2">Student Data Management</h1>
+        <!-- Invalid CGPA Alert -->
+        {{ if .InvalidCGPA }}
+        <div class="alert alert-danger text-center">
+            Please enter a valid CGPA between 0.00 and 4.00.
+        </div>
+        {{ end }}
+        <!-- Empty Fields -->
+        {{ if .EmptyFields}}
+        <div class="alert alert-danger text-center">
+            Fields Cannot be blank
+        </div>
+        {{ end }}
         <!-- Alert for student ID existence -->
         {{ if .StudentIDExists }}
         <div class="alert alert-danger text-center">
@@ -40,57 +52,79 @@
 
         <div class="row">
             <div class="col">
-                <h2 class="mt-2">Add Student</h2>
-                <form action="/add" method="post" enctype="multipart/form-data">
-                    <div class="form-group">
-                        <label for="id">Student ID:</label>
-                        <input type="text" class="form-control" id="id" name="id" required>
-                    </div>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title h2">Add Student</div>
+                        <form action="/add" method="post" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label for="id">Student ID:</label>
+                                <input type="text" class="form-control" id="id" name="id" required
+                                    placeholder="Eg. 181662">
+                            </div>
 
-                    <div class="form-group">
-                        <label for="name">Student Name:</label>
-                        <input type="text" class="form-control " id="name" name="name" required>
-                    </div>
+                            <div class="form-group">
+                                <label for="name">Student Name:</label>
+                                <input type="text" class="form-control " id="name" name="name" required
+                                    placeholder="Eg. Habib Al Hasan">
+                            </div>
 
-                    <div class="form-group">
-                        <label for="cgpa">Student CGPA:</label>
-                        <input type="number" step="0.01" class="form-control " id="cgpa" name="cgpa" required>
-                    </div>
+                            <div class="form-group">
+                                <label for="cgpa">Student CGPA:</label>
+                                <input type="number" step="0.01" class="form-control " id="cgpa" name="cgpa" required
+                                    placeholder="Eg. 3.55">
+                            </div>
 
-                    <div class="form-group">
-                        <label for="career_interest">Career Interest:</label>
-                        <input type="text" class="form-control" id="career_interest" name="career_interest" required>
-                    </div>
+                            <div class="form-group">
+                                <label for="career_interest">Career Interest:</label>
+                                <input type="text" class="form-control" id="career_interest" name="career_interest"
+                                    required placeholder="Eg. Software Engineer">
+                            </div>
 
-                    <div class="form-group">
-                        <label for="image">Student Image:</label>
-                        <input type="file" class="form-control-file " id="image" name="image" accept="image/*" required>
-                    </div>
+                            <div class="form-group">
+                                <label for="image">Student Image:</label>
+                                <input type="file" class="form-control-file " id="image" name="image" accept="image/*"
+                                    required>
+                            </div>
 
-                    <button type="submit" class="btn btn-primary">Add Student</button>
-                </form>
+                            <button type="submit" class="btn btn-primary">Add Student</button>
+                        </form>
+                    </div>
+                </div>
             </div>
 
             <div class="col">
-                <h2 class="mt-2">View Student</h2>
-                <form action="/view" method="get">
-                    <div class="form-group">
-                        <label for="view_id">Student ID:</label>
-                        <input type="text" class="form-control" id="view_id" name="id" required>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title h2">View Student</div>
+                        <form action="/view" method="get">
+                            <div class="form-group">
+                                <label for="view_id">Student ID:</label>
+                                <input type="text" class="form-control" id="view_id" name="id" required
+                                    placeholder="Eg. 181662">
+                            </div>
+                            <button type="submit" class="btn btn-primary">View Student</button>
+                        </form>
+
                     </div>
-                    <button type="submit" class="btn btn-primary">View Student</button>
-                </form>
+
+                </div>
 
             </div>
             <div class="col">
-                <h2 class="mt-2">Delete Student</h2>
-                <form action="/delete" method="get">
-                    <div class="form-group">
-                        <label for="delete_id">Student ID:</label>
-                        <input type="text" class="form-control" id="delete_id" name="id" required>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title h2">Delete Student</div>
+                        <form action="/delete" method="get">
+                            <div class="form-group">
+                                <label for="delete_id">Student ID:</label>
+                                <input type="text" class="form-control" id="delete_id" name="id" required
+                                    placeholder="Eg. 181662">
+                            </div>
+                            <button type="submit" class="btn btn-danger">Delete Student</button>
+                        </form>
+
                     </div>
-                    <button type="submit" class="btn btn-danger">Delete Student</button>
-                </form>
+                </div>
             </div>
         </div>
     </div>

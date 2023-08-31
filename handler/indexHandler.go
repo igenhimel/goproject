@@ -11,6 +11,7 @@ func IndexHandler(w http.ResponseWriter, r *http.Request) {
 	tmpl := template.Must(template.ParseFiles("templates/index.html"))
 
     data := struct {
+        
         StudentIDExists   bool
         ExistingStudentID string
         StudentAdded      bool
@@ -18,6 +19,8 @@ func IndexHandler(w http.ResponseWriter, r *http.Request) {
         StudentNotFound   bool
         DeleteStudent     bool
         DeleteStudentID   string
+        InvalidCGPA       bool
+        EmptyFields       bool
     }{
         StudentIDExists:   r.URL.Query().Get("existing_student_id") != "",
         ExistingStudentID: r.URL.Query().Get("existing_student_id"),
@@ -26,6 +29,8 @@ func IndexHandler(w http.ResponseWriter, r *http.Request) {
         StudentNotFound:   r.URL.Query().Get("student_not_found") != "",
         DeleteStudent:     r.URL.Query().Get("deleted_student_id") != "",
         DeleteStudentID:   r.URL.Query().Get("deleted_student_id"),
+        InvalidCGPA:       r.URL.Query().Get("invalid_cgpa")!="",
+        EmptyFields:       r.URL.Query().Get("empty_fields")!="",
     }
 
     tmpl.Execute(w, data)

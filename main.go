@@ -6,14 +6,23 @@ import (
 	"net/http"
 	"os"
     "goproject/handler"
+    "github.com/gorilla/mux"
+
 )
 
+
 func main() {
+    r := mux.NewRouter()
+
     log.SetOutput(os.Stdout)
-    http.HandleFunc("/", handler.IndexHandler)
-    http.HandleFunc("/add", handler.AddStudentHandler)
-    http.HandleFunc("/view", handler.ViewStudentHandler)
-    http.HandleFunc("/delete", handler.DeleteStudentHandler)
+    r.HandleFunc("/", handler.IndexHandler)
+    r.HandleFunc("/add", handler.AddStudentHandler)
+    r.HandleFunc("/view", handler.ViewStudentHandler)
+    r.HandleFunc("/delete", handler.DeleteStudentHandler)
+
+    r.NotFoundHandler = http.HandlerFunc(handler.NotFoundHandler)
+    http.Handle("/", r)
+
     http.Handle("/images/", http.StripPrefix("/images/", http.FileServer(http.Dir("images"))))
     port := "8080"
     fmt.Printf("Server listening on port %s...\n", port)
