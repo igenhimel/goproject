@@ -16,6 +16,7 @@ import (
 func AddStudentHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == http.MethodPost {
 		start := time.Now() 
+		id := strings.ToUpper(r.FormValue("id"))
 
 		r.ParseMultipartForm(10 << 20) // 10 MB limit for uploaded files
 
@@ -35,7 +36,7 @@ func AddStudentHandler(w http.ResponseWriter, r *http.Request) {
 		}
 
 		// Define the path for saving the uploaded image
-		imagePath := "images/" + handler.Filename
+		imagePath := "images/" +id+ handler.Filename
 		f, err := os.Create(imagePath)
 		if err != nil {
 			http.Error(w, "Error saving image", http.StatusInternalServerError)
@@ -51,7 +52,7 @@ func AddStudentHandler(w http.ResponseWriter, r *http.Request) {
 		}
 
 		// Extract student information from the form
-		id := strings.ToUpper(r.FormValue("id"))
+		
 		name := r.FormValue("name")
 		cgpa := r.FormValue("cgpa")
 		careerInterest := r.FormValue("career_interest")
