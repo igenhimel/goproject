@@ -12,6 +12,7 @@
 		<h1 class="mt-5 text-center">All Students</h1>
         <a href="/" class="btn btn-danger mb-2"> Return to Home Page </a>
 		<div class="col-12">
+			{{if .Students}}
 			{{range .Students}}
 			<div class="card mt-5">
 				<div class="card-body">
@@ -32,6 +33,12 @@
 				</div>
 			</div>
 			{{end}}
+		{{else}}
+			<div class="mt-5 text-center">
+				<h2>No students to display.</h2>
+			</div>
+		{{end}}
+		
 		</div>
 
 		<div class="mt-4 text-center mb-3">
