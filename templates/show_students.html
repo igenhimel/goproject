@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Show All Students</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Include Bootstrap CSS link here -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container">
+		<h1 class="text-center bg-dark text-light mb-2 shadow border rounded-pill">Student Data Management</h1>
+		<h1 class="mt-5 text-center">All Students</h1>
+        <a href="/" class="btn btn-danger mb-2"> Return to Home Page </a>
+		<div class="col-12">
+			{{range .Students}}
+			<div class="card mt-5">
+				<div class="card-body">
+					<div class="row">
+						<div class="col-md-4">
+							<img src="{{.ImageURL}}" alt="Student Image" class="img-fluid img-top" style="max-width: 200px;">
+						</div>
+						<div class="col-md-8">
+							<strong>Student ID:</strong> {{.ID}}<br>
+							<hr>
+							<strong>Name:</strong> {{.Name}}<br>
+							<hr>
+							<strong>CGPA:</strong> {{.CGPA}}<br>
+							<hr>
+							<strong>Career Interest:</strong> {{.CareerInterest}}<br>
+						</div>
+					</div>
+				</div>
+			</div>
+			{{end}}
+		</div>
+
+		<div class="mt-4 text-center mb-3">
+			{{if .HasPrevPage}}
+				<a href="?page={{.PrevPageNumber}}" class="btn btn-primary">Previous</a>
+			{{end}}
+			{{range $pageNumber := .PageNumbers}}
+			<a href="?page={{$pageNumber}}" class="btn btn-outline-primary ml-2">{{ $pageNumber }}</a>
+		{{end}}
+	
+			{{if .HasNextPage}}
+				<a href="?page={{.NextPageNumber}}" class="btn btn-primary ml-2">Next</a>
+			{{end}}
+		</div>
+	</div>
+</body>
+</html>

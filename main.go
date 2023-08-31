@@ -19,6 +19,7 @@ func main() {
     r.HandleFunc("/add", handler.AddStudentHandler)
     r.HandleFunc("/view", handler.ViewStudentHandler)
     r.HandleFunc("/delete", handler.DeleteStudentHandler)
+    r.HandleFunc("/all-student",handler.ShowAllStudentsHandler)
 
     r.NotFoundHandler = http.HandlerFunc(handler.NotFoundHandler)
     http.Handle("/", r)
