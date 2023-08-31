@@ -2,14 +2,14 @@ package handler
 
 import (
 	"fmt"
+	"goproject/models"
+	"html/template"
 	"io"
 	"net/http"
 	"os"
 	"strconv"
-	"time"
-	"goproject/models"
 	"strings"
-	"html/template"
+	"time"
 )
 
 // AddStudentHandler handles the addition of a new student.
