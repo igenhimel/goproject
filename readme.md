@@ -18,7 +18,7 @@ This is a simple student management system web application that allows you to ad
 
 1. Clone the repository:
    ```bash
-   https://github.com/igenhimel/goproject.git
+   git clone https://github.com/igenhimel/goproject.git
    cd goproject
    ```
 
